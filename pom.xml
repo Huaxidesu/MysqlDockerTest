@@ -49,6 +49,14 @@
             <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- 替代的 JAXB 依赖 -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+    </dependencies>
     </dependencies>
 
     <build>
