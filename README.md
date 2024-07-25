@@ -1,7 +1,3 @@
-当然可以！以下是完善后的README文件内容：
-
----
-
 # Zoo Management System
 
 ## 项目简介
