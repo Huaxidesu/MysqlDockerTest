@@ -56,4 +56,15 @@ public class Animal {
   public void setHealthStatus(String healthStatus) {
     this.healthStatus = healthStatus;
   }
+
+  @Override
+  public String toString() {
+    return "Animal{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", species='" + species + '\'' +
+            ", age=" + age +
+            ", healthStatus='" + healthStatus + '\'' +
+            '}';
+  }
 }

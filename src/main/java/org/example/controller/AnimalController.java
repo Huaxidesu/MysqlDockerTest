@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/animals")
@@ -20,23 +21,29 @@ public class AnimalController {
   }
 
   @GetMapping
-  public List<Animal> getAllAnimals() {
-    return animalRepository.findAll();
+  public List<Animal> getAnimals() {
+    List<Animal> animals = animalRepository.findAll();
+    animals.forEach(animal -> System.out.println(animal));
+    return animals;
   }
 
   @PutMapping("/{id}")
   public Animal updateAnimal(@PathVariable int id, @RequestBody Animal animalDetails) {
-    Animal animal = animalRepository.findById(id).orElseThrow();
-    animal.setName(animalDetails.getName());
-    animal.setSpecies(animalDetails.getSpecies());
-    animal.setAge(animalDetails.getAge());
-    animal.setHealthStatus(animalDetails.getHealthStatus());
-    return animalRepository.save(animal);
+    Optional<Animal> optionalAnimal = animalRepository.findById(id);
+    if (optionalAnimal.isPresent()) {
+      Animal animal = optionalAnimal.get();
+      animal.setName(animalDetails.getName());
+      animal.setSpecies(animalDetails.getSpecies());
+      animal.setAge(animalDetails.getAge());
+      animal.setHealthStatus(animalDetails.getHealthStatus());
+      return animalRepository.save(animal);
+    } else {
+      throw new RuntimeException("Animal not found with id " + id);
+    }
   }
 
   @DeleteMapping("/{id}")
   public void deleteAnimal(@PathVariable int id) {
-    Animal animal = animalRepository.findById(id).orElseThrow();
-    animalRepository.delete(animal);
+    animalRepository.deleteById(id);
   }
 }
