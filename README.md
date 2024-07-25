@@ -10,7 +10,7 @@
 
 示例：
 ```properties
-spring.datasource.url=jdbc:mysql://你的ip地址:3306/zoo_db
+spring.datasource.url=jdbc:mysql://你的ip地址:3306/zoo_management
 spring.datasource.username=root
 spring.datasource.password=密码
 ```
